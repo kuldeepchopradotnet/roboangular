@@ -1,0 +1,11 @@
+Generating ES5 bundles for differential loading...
+ES5 bundle generation complete.
+
+chunk {2} polyfills-es2015.5b10b8fd823b6392f1fd.js (polyfills) 36.2 kB [initial] [rendered]
+chunk {3} polyfills-es5.3e8196928d184a6e5319.js (polyfills-es5) 127 kB [initial] [rendered]
+chunk {0} runtime-es2015.c5fa8325f89fc516600b.js (runtime) 1.45 kB [entry] [rendered]
+chunk {0} runtime-es5.c5fa8325f89fc516600b.js (runtime) 1.45 kB [entry] [rendered]
+chunk {1} main-es2015.c0a7ea6e1a56c082505c.js (main) 245 kB [initial] [rendered]
+chunk {1} main-es5.c0a7ea6e1a56c082505c.js (main) 293 kB [initial] [rendered]
+chunk {4} styles.3ff695c00d717f2d2a11.css (styles) 0 bytes [initial] [rendered]
+Date: 2020-06-20T07:52:36.523Z - Hash: 9b83a3ffef9f88b3ced4 - Time: 10195ms
