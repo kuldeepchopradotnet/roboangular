@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HtmlTagRemoverPipe } from './core/pipes/html-tag-remover/html-tag-remover.pipe';
 import { SubStrUrlPipe } from './core/pipes/substr-url/sub-str-url.pipe';
 import { DateCustomPipe } from './core/pipes/date-custom/date-custom.pipe';
-
+import { DisqusModule } from "ngx-disqus";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,8 @@ import { DateCustomPipe } from './core/pipes/date-custom/date-custom.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DisqusModule.forRoot('irobohawk')
   ],
   providers: [],
   bootstrap: [AppComponent]

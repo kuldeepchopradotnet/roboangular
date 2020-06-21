@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.14",
     "angular-cli-ghpages": "^0.6.2",
     "copy-to-clipboard": "^3.3.1",
+    "ngx-disqus": "^2.4.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
