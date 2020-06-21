@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background: #dadada !important;
+}
+
+.bg-robo {
+    background: #1c9e89 !important;
+}
+
+img {
+    max-width: 100% !important;
+}
+
+.robo-lead h1 {
+    font-size: 1.3rem !important;
+}
+
+.robo-lead img {
+    margin: 12px 0px;
+}
+
+.robo-lead span {
+    width: 100%;
+    float: left;
+}
+
+a.navbar-brand img {
+    width: 82px;
+}

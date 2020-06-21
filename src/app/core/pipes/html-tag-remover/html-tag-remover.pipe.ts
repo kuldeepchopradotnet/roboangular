@@ -6,7 +6,10 @@ import { Helper } from '../../shared/helper';
 })
 export class HtmlTagRemoverPipe implements PipeTransform {
 
-  transform(value: string, ...args: any[]): string {
+  transform(value: string, action=''): string {
+    if(action==='extractImage'){
+      return 
+    }
     return Helper.htmlTagRemover(value);
   }
 

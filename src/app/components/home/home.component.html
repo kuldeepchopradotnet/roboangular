@@ -1,7 +1,7 @@
-<div class="jumbotron text-center">
+<!-- <div class="jumbotron text-center">
     <h1>{{domain}}</h1>
     <p>{{subTitle}} {{id}}</p>
-</div>
+</div> -->
 
 <div class="container" *ngIf='!id'>
     <div class="row">
@@ -9,9 +9,7 @@
             <a [href]="post?.url | subStrUrl">
                 <div class="post-col">
                     <h5>{{post?.title}}</h5>
-                    <img src='assets/img.png' />
-                    <p [innerHTML]="post?.content | htmlTagRemover"></p>
-                    <p>{{post?.view}}</p>
+                    <img [src]="post?.images?.length > 0 ? post.images[0].url : 'irobo.jpg'" />
                 </div>
             </a>
         </div>
@@ -22,7 +20,7 @@
 
 
 
-<div class="container" *ngIf='id'>
+<div class="container robo-container" *ngIf='id'>
 
     <div class="row">
 
@@ -41,12 +39,12 @@
             <hr>
 
             <!-- Date/Time -->
-            <p>{{post?.published}}</p>
+            <p>{{post?.published | dateCustom : 'dd,mmyyhh:mm'}}</p>
 
             <hr>
 
             <!-- Post Content -->
-            <p class="lead" [innerHtml]="post?.content">
+            <p class="robo-lead lead" [innerHtml]="post?.content">
 
                 <hr>
 
@@ -58,7 +56,7 @@
                             <div class="form-group">
                                 <textarea class="form-control" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary bg-robo">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -110,7 +108,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for...">
                         <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
+                <button class="btn btn-secondary bg-robo" type="button">Go!</button>
               </span>
                     </div>
                 </div>

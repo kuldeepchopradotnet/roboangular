@@ -7,13 +7,15 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HtmlTagRemoverPipe } from './core/pipes/html-tag-remover/html-tag-remover.pipe';
 import { SubStrUrlPipe } from './core/pipes/substr-url/sub-str-url.pipe';
+import { DateCustomPipe } from './core/pipes/date-custom/date-custom.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HtmlTagRemoverPipe,
-    SubStrUrlPipe
+    SubStrUrlPipe,
+    DateCustomPipe
   ],
   imports: [
     BrowserModule,

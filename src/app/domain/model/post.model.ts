@@ -6,10 +6,10 @@ export interface Author {
     id: string;
     displayName: string;
     url: string;
-    image: AuthorImg;
+    image: Image;
 }
 
-export interface AuthorImg {
+export interface Image {
     url: string
 }
 
@@ -23,6 +23,7 @@ export interface Post {
     kind: string;
     id: string;
     blog: Blog;
+    images: Image[];
     published: string;
     updated: string;
     url: string;

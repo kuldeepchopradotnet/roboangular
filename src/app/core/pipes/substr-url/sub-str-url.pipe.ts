@@ -7,7 +7,6 @@ import { Helper } from '../../shared/helper';
 export class SubStrUrlPipe implements PipeTransform {
 
   transform(url:string, ...args: any[]): string {
-    debugger;
     let ur = Helper.subStrUrl(url);
     return ur;
   }
