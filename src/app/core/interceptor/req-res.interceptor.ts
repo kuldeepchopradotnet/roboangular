@@ -10,7 +10,16 @@ export class ReqResInterceptor implements HttpInterceptor {
 
     }
     enableLoader(val:boolean){
-        this.loaderService.enableLoader(val);
+        if(!val){
+            setTimeout(() => {
+                this.loaderService.enableLoader(val);
+            }, 1000);
+        }
+        else{
+            this.loaderService.enableLoader(val);
+        }
+        
+
      }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
        this.enableLoader(true);
@@ -18,7 +27,7 @@ export class ReqResInterceptor implements HttpInterceptor {
             tap(
               event => { 
                   //event instanceof HttpResponse
-                  this.enableLoader(false);
+                 this.enableLoader(false);
                 },
               error => {
                 this.enableLoader(false);

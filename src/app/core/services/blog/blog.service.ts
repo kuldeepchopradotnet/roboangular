@@ -17,21 +17,18 @@ export class BlogService {
   getPost(): Observable<PostRoot>{
     let {base,blog,blogId,posts,status,statusVal,fetchBodies,fetchImages,isFetchBody,isFetchImages,key,apikey} = this.blogUrls;
     let url = `${base}${blog}/${blogId}/${posts}?${status}=${statusVal}&${fetchBodies}=${isFetchBody}&${fetchImages}=${isFetchImages}&${key}=${apikey}`; 
-    console.log(url);
     return this.http.get<PostRoot>(url);
   }
 
   getPostByPath(pathurl:string){
     let {base,blog,blogId,posts,apikey,bypath,path,key} = this.blogUrls;
-    let url = `${base}${blog}/${blogId}/${posts}/${bypath}?${path}=${pathurl}&${key}=${apikey}`; 
-    console.log(url);
+    let url = `${base}${blog}/${blogId}/${posts}/${bypath}?${path}=${pathurl}&${key}=${apikey}`;
     return this.http.get<Post>(url);
   }
 
   searchPost(query:string){
     let {base,blog,blogId,posts,apikey,search,key} = this.blogUrls;
     let url = `${base}${blog}/${blogId}/${posts}/${search}?q=${query}&${key}=${apikey}`; 
-    console.log(url);
     return this.http.get<PostRoot>(url);
   }
 
