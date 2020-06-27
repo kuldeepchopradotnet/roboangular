@@ -2,29 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostRoot, Post } from 'src/app/domain/model/post.model';
+import { blogUrls } from '../../shared/api.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  blogUrls = {
-    base: 'https://www.googleapis.com/blogger/v3/',
-    blog: 'blogs',
-    blogId: '4489368836732156761',
-    posts : 'posts',
-    apikey: 'AIzaSyBaYgrLt6mRIYL2N5pAXWGTBx5-tT8LF30',
-    search: 'search',
-    status: 'status',
-    statusVal: 'live',
-    fetchBodies: 'fetchBodies',
-    fetchImages: 'fetchImages',
-    isFetchBody: false,
-    isFetchImages: true,
-    key: 'key',
-    bypath: 'bypath',
-    path: 'path'
-  }
+  blogUrls: any = blogUrls;
 
   readonly apiKey = ''
   constructor(private http: HttpClient) { }

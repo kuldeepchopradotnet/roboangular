@@ -39,14 +39,9 @@ export class Helper {
 
     static subStrUrl(url: string) : string {
         if(!this.isStringNullOrEmpty(url)){
-            // let idxOfSlash = url.lastIndexOf('/');
-            // url = url.substr(idxOfSlash);
-   debugger;
             url = url.replace(Constant.apiRoboUrl,'')
-
             let idxOfHtml = url.lastIndexOf('.');
             url = url.substr(0, idxOfHtml);
-          
             return url;
         }
        return '';

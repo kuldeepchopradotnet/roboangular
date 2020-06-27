@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { PostRoot, Post } from 'src/app/domain/model/post.model';
 import { BlogService } from 'src/app/core/services/blog/blog.service';
 import { Helper } from 'src/app/core/shared/helper';
+import { PubSubService } from 'src/app/core/services/data-service/pub-sub.service';
+import { Constant } from 'src/app/core/shared/constants';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,19 @@ import { Helper } from 'src/app/core/shared/helper';
 })
 export class HomeComponent implements OnInit {
 
-  id;
+  id: any;
   domain: string = 'iRoboHawk'
   subTitle: string = 'iRoboHawk.blogspot.com'
   posts: Post[] = [];
   post: Post;
+  host: string = Constant.apiRoboUrl;
+
   constructor(private route: ActivatedRoute,
-    private blogService: BlogService
+    private blogService: BlogService,
+
   ) { }
+
+
 
   ngOnInit() {
     // this.posts = this.mockPostList();
