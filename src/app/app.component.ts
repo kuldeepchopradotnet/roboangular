@@ -14,7 +14,7 @@ import { AboutComponent } from './core/shared/dialogbox/about/about.component';
 export class AppComponent implements AfterViewChecked {
   title = 'robohawk';
   isLoader: boolean = false;
-  log: string = "https://kuldeepchopradotnet.github.io/roboangular";
+  logo: string = "https://kuldeepchopradotnet.github.io/roboangular/assets/robo.svg";
 
   themeColorArr: ITheme[] = [{
     bgColor: '#33b5e5',
