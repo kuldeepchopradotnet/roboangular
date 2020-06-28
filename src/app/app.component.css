@@ -15,3 +15,15 @@ mat-spinner.mat-spinner.mat-progress-spinner.mat-primary.mat-progress-spinner-in
     filter: blur(8px);
     -webkit-filter: blur(8px);
 }
+
+span.theme-color {
+    width: 13px;
+    height: 13px;
+    border: 1px solid;
+    float: left;
+    margin: 1px 5px;
+}
+
+span.theme-color.color1 {
+    background: #33b5e5 !important;
+}

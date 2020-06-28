@@ -13,13 +13,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PubSubService } from './core/services/data-service/pub-sub.service';
 import { ReqResInterceptor } from './core/interceptor/req-res.interceptor';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AboutComponent } from './core/shared/dialogbox/about/about.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HtmlTagRemoverPipe,
     SubStrUrlPipe,
-    DateCustomPipe
+    DateCustomPipe,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +31,13 @@ import { ReqResInterceptor } from './core/interceptor/req-res.interceptor';
     HttpClientModule,
     DisqusModule.forRoot('irobohawk'),
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [PubSubService,{ provide: HTTP_INTERCEPTORS, useClass: ReqResInterceptor, multi: true },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AboutComponent
+  ],
 })
 export class AppModule { }

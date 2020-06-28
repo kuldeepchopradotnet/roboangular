@@ -1,0 +1,6 @@
+mat-dialog-actions.mat-dialog-actions button {
+    border: 1px solid #a6a6a6;
+    background: #dadada;
+    font-size: 12px;
+    box-shadow: 0px 0px 4px #a4a4a4;
+}

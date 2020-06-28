@@ -3,12 +3,11 @@
         <div class="col-sm-4 mb-4 post" *ngFor="let post of posts">
             <a [href]="post?.url | subStrUrl">
                 <div class="post-col">
-                    <h5>{{post?.title}}</h5>
+                    <h5 class="bg-robo">{{post?.title}}</h5>
                     <img [src]="post?.images?.length > 0 ? post.images[0].url : 'irobo.jpg'" />
                 </div>
             </a>
         </div>
-
     </div>
 </div>
 

@@ -5,7 +5,7 @@ body {
 }
 
 .bg-robo {
-    background: #1c9e89 !important;
+    background: #1c9e89;
 }
 
 img {
@@ -20,13 +20,13 @@ img {
     margin: 12px 0px;
 }
 
-.robo-lead span {
-    width: 100%;
-    float: left;
-}
-
 a.navbar-brand img {
     width: 82px;
+}
+
+a.navbar-brand svg {
+    width: 82px;
+    height: 59px;
 }
 
 html,
@@ -44,7 +44,50 @@ div b {
     font-weight: 600 !important;
 }
 
+pre {
+    overflow-y: scroll !important;
+    margin-bottom: 1em;
+    padding: 12px 8px;
+    width: auto;
+    max-height: 400px;
+    overflow: auto;
+    font-size: 13px;
+    background-color: #eaeaea;
+    border-radius: 3px;
+}
 
-/* div>br {
-    display: none !important;
-} */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: #eaeaea;
+}
+
+::-webkit-scrollbar-track {
+    background: #e8e7e7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b3b3b7d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2525257d;
+}
+
+pre::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: #00000000;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #00000000;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #bbbbbb7d;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: #bbbbbbad;
+}
