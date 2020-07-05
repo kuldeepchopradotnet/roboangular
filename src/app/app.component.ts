@@ -31,9 +31,14 @@ export class AppComponent implements AfterViewChecked {
     fontColor: '#ffffff'
   },
   {
-    bgColor: 'rgb(195, 195, 195)',
-    fontColor: 'rgb(0, 0, 0)'
-  }];
+    bgColor: '#039be5',
+    fontColor: '#ffffff'
+  },
+  {
+    bgColor: 'rgb(29, 8, 1)',
+    fontColor: '#ffffff'
+  }
+];
 
   constructor(private loaderService: PubSubService,
     private cdRef: ChangeDetectorRef,
