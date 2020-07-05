@@ -5,6 +5,8 @@ import { BlogService } from 'src/app/core/services/blog/blog.service';
 import { Helper } from 'src/app/core/shared/helper';
 import { PubSubService } from 'src/app/core/services/data-service/pub-sub.service';
 import { Constant } from 'src/app/core/shared/constants';
+import { PageVisitorRepository } from 'src/app/core/repository/site-visitor/site-visitor.repo';
+import { uuidV5 } from 'src/app/core/utils';
 
 @Component({
   selector: 'app-home',
@@ -19,13 +21,17 @@ export class HomeComponent implements OnInit {
   posts: Post[] = [];
   post: Post;
   host: string = Constant.apiRoboUrl;
+  pageCount: number = 0;
 
   constructor(private route: ActivatedRoute,
     private blogService: BlogService,
-
+    private pageVisitorRepo: PageVisitorRepository
   ) { }
 
-
+  get docRef() {
+    let url = (this.id || Constant.apiRoboUrl);
+    return uuidV5(url)
+  }
 
   ngOnInit() {
     // this.posts = this.mockPostList();
@@ -38,13 +44,29 @@ export class HomeComponent implements OnInit {
     else {
       this.postList();
     }
+    this.getAndUpdatePageVisitor();
   }
 
+
+  getAndUpdatePageVisitor() {
+    this.pageVisitorRepo.get(this.docRef).subscribe((x: any) => {
+      debugger;
+      let res = x.data();
+      if(res) {
+        this.pageCount = (res.count || 0);
+      }
+      this.pageCount = this.pageCount + 1;
+      this.pageVisitorRepo.set({ count: this.pageCount }, this.docRef);
+    }, (error: any) => {
+      console.log("getAndUpdatePageVisitor_set", error);
+    });
+  }
 
   getPostByPath(path) {
     this.blogService.getPostByPath(path).subscribe((res: Post) => {
       if (res) {
         this.post = res;
+        console.log(res);
       }
     }, (error: any) => {
       console.log(error);

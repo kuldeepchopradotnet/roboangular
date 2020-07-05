@@ -1,3 +1,5 @@
+<!-- display posts dashboard -->
+
 <div class="container" *ngIf='!id'>
     <div class="row">
         <div class="col-sm-4 mb-4 post" *ngFor="let post of posts">
@@ -11,17 +13,18 @@
     </div>
 </div>
 
-
+<!-- display single post -->
 <div class="container robo-container" *ngIf='id'>
     <div class="row">
         <div class="col-lg-8">
             <h1 class="mt-4">{{post?.title}}</h1>
             <p class="lead">
                 by
-                <a href="#">{{post?.author?.displayName}}</a>
+                <a [href]="post?.author?.url" class="badge badge-info">{{post?.author?.displayName}}</a>
             </p>
             <hr>
-            <p>{{post?.published | dateCustom : 'dd,mmyyhh:mm'}}</p>
+            <small class="badge badge-secondary">{{post?.published | dateCustom : 'dd,mmyyhh:mm'}}</small>&nbsp;
+            <small class="badge badge-warning">views: {{pageCount}}</small>
             <div class="robo-lead lead mb-3" [innerHtml]="post?.content"></div>
             <hr>
             <div class="card my-4 mt-4">

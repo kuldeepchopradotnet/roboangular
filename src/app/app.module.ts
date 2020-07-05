@@ -15,6 +15,11 @@ import { PubSubService } from './core/services/data-service/pub-sub.service';
 import { ReqResInterceptor } from './core/interceptor/req-res.interceptor';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AboutComponent } from './core/shared/dialogbox/about/about.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
+import { PageVisitorRepository } from './core/repository/site-visitor/site-visitor.repo';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -32,9 +37,16 @@ import { AboutComponent } from './core/shared/dialogbox/about/about.component';
     DisqusModule.forRoot('irobohawk'),
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
-  providers: [PubSubService,{ provide: HTTP_INTERCEPTORS, useClass: ReqResInterceptor, multi: true },],
+  providers: [
+    PubSubService,
+    { provide: HTTP_INTERCEPTORS, useClass: ReqResInterceptor, multi: true },
+    AngularFirestore,
+    PageVisitorRepository
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     AboutComponent

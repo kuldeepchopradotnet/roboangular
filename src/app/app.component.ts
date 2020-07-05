@@ -3,7 +3,7 @@ import { PubSubService } from './core/services/data-service/pub-sub.service';
 import { Helper } from './core/shared/helper';
 import { Constant } from './core/shared/constants';
 import { ITheme } from './domain/model/theme.interface';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AboutComponent } from './core/shared/dialogbox/about/about.component';
 
 @Component({
@@ -36,19 +36,19 @@ export class AppComponent implements AfterViewChecked {
   }];
 
   constructor(private loaderService: PubSubService,
-     private cdRef: ChangeDetectorRef,
-     public dialog: MatDialog) {
+    private cdRef: ChangeDetectorRef,
+    public dialog: MatDialog) {
 
 
   }
 
-  setMythemPrefrence(theme:ITheme){
+  setMythemPrefrence(theme: ITheme) {
     try {
-        let mythemeStr = JSON.stringify(theme);
-      Helper.setLocalStorage(Constant.myTheme,mythemeStr);
+      let mythemeStr = JSON.stringify(theme);
+      Helper.setLocalStorage(Constant.myTheme, mythemeStr);
     }
     catch {
-        console.warn("setLocalStorage issue");
+      console.warn("setLocalStorage issue");
     }
   }
 
@@ -59,16 +59,16 @@ export class AppComponent implements AfterViewChecked {
   }
 
 
-  getMythemPrefrence(mytheme:string){
+  getMythemPrefrence(mytheme: string) {
     try {
       let theme = Helper.getLocalStorage(mytheme);
-      if(theme){
+      if (theme) {
         return JSON.parse(theme);
       }
       return null;
     }
     catch {
-        console.warn("getLocalStorage issue");
+      console.warn("getLocalStorage issue");
     }
   }
 
@@ -79,7 +79,7 @@ export class AppComponent implements AfterViewChecked {
 
   ngAfterViewChecked(): void {
     let theme = this.getMythemPrefrence(Constant.myTheme);
-    if(theme){
+    if (theme) {
       this.renderTheme(theme);
     }
     this.loaderService.getloader.subscribe(isLoader => {
@@ -88,7 +88,7 @@ export class AppComponent implements AfterViewChecked {
     })
   }
 
-  renderTheme(theme: ITheme){
+  renderTheme(theme: ITheme) {
     let bgRobo = document.querySelectorAll(".bg-robo");
     bgRobo.forEach((el: HTMLElement) => {
       el.style.background = theme.bgColor;
