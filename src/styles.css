@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background: #dadada !important;
+    background: #ffffff !important;
+    font-family: 'Roboto', sans-serif;
 }
 
 .bg-robo {
-    background: #1c9e89;
+    background: #ffffff;
 }
 
 img {
@@ -90,4 +91,8 @@ pre::-webkit-scrollbar-thumb {
 
 pre::-webkit-scrollbar-thumb:hover {
     background: #bbbbbbad;
+}
+
+a.nav-link.text-black {
+    color: black !important;
 }

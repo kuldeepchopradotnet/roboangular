@@ -41,4 +41,5 @@ export interface PostRoot {
     kind: string;
     items: Post[];
     etag: string;
+    nextPageToken:string;
 }

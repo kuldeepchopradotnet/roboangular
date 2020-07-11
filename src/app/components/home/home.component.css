@@ -1,17 +1,15 @@
 .post-col {
-    background: #def3ff;
     border-radius: 0px!important;
-    box-shadow: 0px 0px 23px 3px #00000030;
     overflow: hidden;
 }
 
 .post-col h5 {
-    background: #e4ffe2;
     margin: 0;
-    padding: 2px 5px;
     height: 53px;
-    color: #0c0c0c;
     font-size: 14px;
+    background: rgb(255, 255, 255);
+    color: #252525;
+    font-weight: 600;
 }
 
 .post-col h5:hover {
@@ -27,8 +25,9 @@
 
 .post-col img {
     width: 100%;
-    height: 156px;
+    height: 111px;
     transition: transform .2s;
+    box-shadow: 0px 0px 15px #000000b5;
 }
 
 img:hover {

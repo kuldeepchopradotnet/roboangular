@@ -20,6 +20,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { PageVisitorRepository } from './core/repository/site-visitor/site-visitor.repo';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { SearchComponent } from './core/shared/dialogbox/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     HtmlTagRemoverPipe,
     SubStrUrlPipe,
     DateCustomPipe,
-    AboutComponent
+    AboutComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     MatProgressSpinnerModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [
     PubSubService,
@@ -49,7 +53,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AboutComponent
+    AboutComponent,
+    SearchComponent
   ],
 })
 export class AppModule { }

@@ -14,21 +14,29 @@ export class BlogService {
   readonly apiKey = ''
   constructor(private http: HttpClient) { }
 
-  getPost(): Observable<PostRoot>{
-    let {base,blog,blogId,posts,status,statusVal,fetchBodies,fetchImages,isFetchBody,isFetchImages,key,apikey} = this.blogUrls;
-    let url = `${base}${blog}/${blogId}/${posts}?${status}=${statusVal}&${fetchBodies}=${isFetchBody}&${fetchImages}=${isFetchImages}&${key}=${apikey}`; 
+  getPost(nextPageToken?: string): Observable<PostRoot> {
+    let limit = 12;
+    let { base, blog, blogId, posts, status, statusVal, fetchBodies, fetchImages, isFetchBody, isFetchImages, key, apikey, maxResults, pageToken } = this.blogUrls;
+    let url:string;
+    if (nextPageToken) {
+      url = `${base}${blog}/${blogId}/${posts}?${status}=${statusVal}&${maxResults}=${limit}&${pageToken}=${nextPageToken}&${fetchBodies}=${isFetchBody}&${fetchImages}=${isFetchImages}&${key}=${apikey}`;
+    }
+    else {
+      url = `${base}${blog}/${blogId}/${posts}?${status}=${statusVal}&${maxResults}=${limit}&${fetchBodies}=${isFetchBody}&${fetchImages}=${isFetchImages}&${key}=${apikey}`;
+    }
+    console.log(url);
     return this.http.get<PostRoot>(url);
   }
 
-  getPostByPath(pathurl:string){
-    let {base,blog,blogId,posts,apikey,bypath,path,key} = this.blogUrls;
+  getPostByPath(pathurl: string) {
+    let { base, blog, blogId, posts, apikey, bypath, path, key } = this.blogUrls;
     let url = `${base}${blog}/${blogId}/${posts}/${bypath}?${path}=${pathurl}&${key}=${apikey}`;
     return this.http.get<Post>(url);
   }
 
-  searchPost(query:string){
-    let {base,blog,blogId,posts,apikey,search,key} = this.blogUrls;
-    let url = `${base}${blog}/${blogId}/${posts}/${search}?q=${query}&${key}=${apikey}`; 
+  searchPost(query: string) {
+    let { base, blog, blogId, posts, apikey, search, key,fetchBodies } = this.blogUrls;
+    let url = `${base}${blog}/${blogId}/${posts}/${search}?q=${query}&${fetchBodies}=${false}&${key}=${apikey}`;
     return this.http.get<PostRoot>(url);
   }
 

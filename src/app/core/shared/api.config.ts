@@ -13,5 +13,7 @@ export const blogUrls = {
     isFetchImages: true,
     key: 'key',
     bypath: 'bypath',
-    path: 'path'
+    path: 'path',
+    maxResults:'maxResults',
+    pageToken:'pageToken'
   }

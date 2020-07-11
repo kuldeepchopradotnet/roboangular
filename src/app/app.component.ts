@@ -14,31 +14,26 @@ import { AboutComponent } from './core/shared/dialogbox/about/about.component';
 export class AppComponent implements AfterViewChecked {
   title = 'robohawk';
   isLoader: boolean = false;
-  logo: string = "https://kuldeepchopradotnet.github.io/roboangular/assets/robo.svg";
+  gitUrl: string = 'https://kuldeepchopradotnet.github.io/roboangular';
+  logo: string = this.gitUrl + "/assets/robo.svg";
 
-  themeColorArr: ITheme[] = [{
-    bgColor: '#33b5e5',
-    fontColor: '#ffffff'
-  }, {
-    bgColor: '#1c9e89',
-    fontColor: '#ffffff'
-  }, {
-    bgColor: '#FF9800',
-    fontColor: '#ffffff'
-  },
-  {
-    bgColor: '#795548',
-    fontColor: '#ffffff'
-  },
-  {
-    bgColor: '#039be5',
-    fontColor: '#ffffff'
-  },
-  {
-    bgColor: 'rgb(29, 8, 1)',
-    fontColor: '#ffffff'
-  }
-];
+  themeColorArr: ITheme[] = [
+    {
+      bgColor: '#ffffff',
+      fontColor: 'black',
+      bgImg: '#ffffff'
+    },
+    {
+      bgColor: '#7ee8fa',
+      fontColor: '#ffffff',
+      bgImg: 'linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%)'
+    },
+    {
+      bgColor: '#b3cdd1',
+      fontColor: '#ffffff',
+      bgImg: 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)'
+    }
+  ];
 
   constructor(private loaderService: PubSubService,
     private cdRef: ChangeDetectorRef,
@@ -73,6 +68,7 @@ export class AppComponent implements AfterViewChecked {
       return null;
     }
     catch {
+      Helper.removeLocalStorage(mytheme);
       console.warn("getLocalStorage issue");
     }
   }
@@ -82,11 +78,14 @@ export class AppComponent implements AfterViewChecked {
     this.renderTheme(theme);
   }
 
-  ngAfterViewChecked(): void {
+  applyTheme() {
     let theme = this.getMythemPrefrence(Constant.myTheme);
     if (theme) {
       this.renderTheme(theme);
     }
+  }
+
+  ngAfterViewChecked(): void {
     this.loaderService.getloader.subscribe(isLoader => {
       this.isLoader = isLoader;
       this.cdRef.detectChanges();
@@ -98,6 +97,7 @@ export class AppComponent implements AfterViewChecked {
     bgRobo.forEach((el: HTMLElement) => {
       el.style.background = theme.bgColor;
       el.style.color = theme.fontColor;
+      el.style.backgroundImage = theme.bgImg;
     })
   }
 

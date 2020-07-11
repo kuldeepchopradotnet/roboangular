@@ -28,8 +28,4 @@ export abstract class BaseRepository<T>  {
     update() {
 
     }
-
-
-
-
 }
