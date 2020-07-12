@@ -14,8 +14,7 @@ export class BlogService {
   readonly apiKey = ''
   constructor(private http: HttpClient) { }
 
-  getPost(nextPageToken?: string): Observable<PostRoot> {
-    let limit = 12;
+  getPost(nextPageToken?: string, limit?:number): Observable<PostRoot> {
     let { base, blog, blogId, posts, status, statusVal, fetchBodies, fetchImages, isFetchBody, isFetchImages, key, apikey, maxResults, pageToken } = this.blogUrls;
     let url:string;
     if (nextPageToken) {

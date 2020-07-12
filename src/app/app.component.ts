@@ -5,6 +5,9 @@ import { Constant } from './core/shared/constants';
 import { ITheme } from './domain/model/theme.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { AboutComponent } from './core/shared/dialogbox/about/about.component';
+import { BlogService } from './core/services/blog/blog.service';
+import { PostRoot } from './domain/model/post.model';
+import { SearchComponent } from './core/shared/dialogbox/search/search.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +19,10 @@ export class AppComponent implements AfterViewChecked {
   isLoader: boolean = false;
   gitUrl: string = 'https://kuldeepchopradotnet.github.io/roboangular';
   logo: string = this.gitUrl + "/assets/robo.svg";
-
+  searchTxt: string;
+  searchmsg: string;
+  isSearchErr: boolean = false;
+  
   themeColorArr: ITheme[] = [
     {
       bgColor: '#ffffff',
@@ -37,10 +43,37 @@ export class AppComponent implements AfterViewChecked {
 
   constructor(private loaderService: PubSubService,
     private cdRef: ChangeDetectorRef,
-    public dialog: MatDialog) {
-
+    public dialog: MatDialog,
+    private blogService: BlogService) {
 
   }
+
+
+  openSearch() {
+    this.isSearchErr = false;
+    if (!this.searchTxt) {
+      this.isSearchErr = true;
+      this.searchmsg = 'enter one or more word to search.';
+      return;
+    }
+    this.blogService.searchPost(this.searchTxt).subscribe((res: PostRoot) => {
+      if (res && res.items && res.items.length > 0) {
+        this.dialog.open(SearchComponent, {
+          autoFocus: false,
+          maxHeight: '90vh',
+          data: {
+            posts: res.items,
+          }
+        });
+      }
+      this.searchmsg = 'No record found.'
+    }, (error: any) => {
+      this.searchmsg = 'No record found.'
+      console.log(error);
+    });
+    this.searchTxt = "";
+  }
+
 
   setMythemPrefrence(theme: ITheme) {
     try {

@@ -3,13 +3,11 @@ import { ActivatedRoute } from "@angular/router";
 import { PostRoot, Post } from 'src/app/domain/model/post.model';
 import { BlogService } from 'src/app/core/services/blog/blog.service';
 import { Helper } from 'src/app/core/shared/helper';
-import { PubSubService } from 'src/app/core/services/data-service/pub-sub.service';
 import { Constant } from 'src/app/core/shared/constants';
 import { PageVisitorRepository } from 'src/app/core/repository/site-visitor/site-visitor.repo';
 import { uuidV5 } from 'src/app/core/utils';
 import { MatDialog } from '@angular/material/dialog';
-import { SearchComponent } from 'src/app/core/shared/dialogbox/search/search.component';
-import { AboutComponent } from 'src/app/core/shared/dialogbox/about/about.component';
+
 
 @Component({
   selector: 'app-home',
@@ -22,13 +20,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   domain: string = 'iRoboHawk'
   subTitle: string = 'iRoboHawk.blogspot.com'
   posts: Post[] = [];
+  sidePosts: Post[] = [];
   post: Post;
   host: string = Constant.apiRoboUrl;
   pageCount: number = 0;
   nextPageToken: string;
-  searchTxt: string;
-  searchmsg: string;
-  isSearchErr: boolean = false;
+
   constructor(private route: ActivatedRoute,
     private blogService: BlogService,
     private pageVisitorRepo: PageVisitorRepository,
@@ -55,9 +52,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       : null;
     if (this.id) {
       this.getPostByPath(this.id);
+      this.getSidePost();
     }
     else {
-      this.postList();
+      this.postList(12, this.cbPost);
     }
     this.getAndUpdatePageVisitor();
     let that = this;
@@ -89,18 +87,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  cbPost(res: PostRoot,that:HomeComponent) {
+      if (that.posts && that.posts.length > 0) {
+        that.posts = that.posts.concat(res.items);
+      }
+      else {
+        that.posts = res.items;
+      }
+      that.nextPageToken = res.nextPageToken;
+  }
 
-  postList() {
-    this.blogService.getPost(this.nextPageToken).subscribe((res: PostRoot) => {
+
+  postList(limit: number = 12, cb: (res: PostRoot,that:any) => void) {
+    this.blogService.getPost(this.nextPageToken, limit).subscribe((res: PostRoot) => {
       if (res && res.items && res.items.length > 0) {
-        if (this.posts && this.posts.length > 0) {
-          this.posts = this.posts.concat(res.items);
-        }
-        else {
-          this.posts = res.items;
-        }
-        this.nextPageToken = res.nextPageToken;
-        console.log(this.nextPageToken);
+        cb(res,this);
       }
     }, (error: any) => {
       console.log(error);
@@ -128,42 +129,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     let element: Document = (event.target as Document)
     var scrollElm = element.scrollingElement;
     let sHeight = (scrollElm.scrollTop - 5 + scrollElm.clientHeight + 5).toFixed();
-    // console.log(sHeight, scrollElm.scrollHeight);
     if (parseInt(sHeight) === scrollElm.scrollHeight) {
-      (that.nextPageToken && that.postList());
+      (that.nextPageToken && that.postList(12, this.cbPost));
     }
   }
 
   loadMore() {
-    (this.nextPageToken && this.postList());
+    (this.nextPageToken && this.postList(12, this.cbPost));
   }
 
-
-  openSearch() {
-    this.isSearchErr = false;
-    if (!this.searchTxt) {
-      this.isSearchErr = true;
-      this.searchmsg = 'enter one or more word to search.';
-      return;
-    }
-    this.searchTxt = "";
-    this.blogService.searchPost(this.searchTxt).subscribe((res: PostRoot) => {
-      if (res && res.items && res.items.length > 0) {
-        console.log("res.items.length",res.items.length);
-        this.dialog.open(SearchComponent, {
-          autoFocus: false,
-          maxHeight: '90vh',
-          data: {
-            posts: res.items,
-          }
-        });
-      }
-      this.searchmsg = 'No record found.'
-    }, (error: any) => {
-      this.searchmsg = 'No record found.'
-      console.log(error);
+  getSidePost() {
+    this.postList(3, (res:PostRoot,that) => {
+      that.sidePosts = res.items;
     });
-
   }
-
 }

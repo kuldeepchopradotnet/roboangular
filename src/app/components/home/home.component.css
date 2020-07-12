@@ -30,6 +30,12 @@
     box-shadow: 0px 0px 15px #000000b5;
 }
 
+@media only screen and (max-width: 600px) {
+    .post-col img {
+        height: 210px;
+    }
+}
+
 img:hover {
     transform: scale(1.1);
 }
@@ -41,8 +47,6 @@ img:hover {
 
 .robo-container .col-lg-8 {
     background-color: white;
-    border-radius: 4px;
-    margin: 24px 0px;
 }
 
 .robo-container h1 {
@@ -54,8 +58,13 @@ img:hover {
     font-weight: 300;
 }
 
+.col-sm-4.p-1.mb-2 {
+    overflow: hidden;
+    border-radius: 5px;
+    background: #17a2b8;
+}
 
-/* 
-.robo-lead.lead.mb-3 {
-    float: left;
-} */
+.col-sm-12.p-1.img {
+    background: #007b8b !important;
+    border-radius: 6px;
+}
