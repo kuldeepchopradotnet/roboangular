@@ -27,3 +27,8 @@ span.theme-color {
 span.theme-color.color1 {
     background: #33b5e5 !important;
 }
+
+.error-border {
+    border: 1px solid red;
+    border-radius: 4px;
+}

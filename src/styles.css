@@ -127,3 +127,7 @@ img.left-img {
 button.btn.my-2.my-sm-0.app-txt-color {
     border: 1px solid;
 }
+
+.hidediv {
+    display: none !important;
+}

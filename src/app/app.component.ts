@@ -51,9 +51,12 @@ export class AppComponent implements AfterViewChecked {
 
   openSearch() {
     this.isSearchErr = false;
+    let element = document.querySelector("#serach-form");
+    element.classList.remove("error-border");
     if (!this.searchTxt) {
       this.isSearchErr = true;
       this.searchmsg = 'enter one or more word to search.';
+      element.classList.add("error-border");
       return;
     }
     this.blogService.searchPost(this.searchTxt).subscribe((res: PostRoot) => {

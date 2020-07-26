@@ -1,5 +1,4 @@
 <!-- display posts dashboard -->
-
 <div class="container" *ngIf='!id'>
     <div class="row">
         <div class="col-sm-4 col-md-3 mb-4 post" *ngFor="let post of posts">
@@ -15,8 +14,7 @@
             </a>
         </div>
         <div class="col-md-12 text-center">
-            <a href="javascript:void(0)" *ngIf="nextPageToken" (click)="loadMore()" class="badge badge-info">Load More..
-                .</a>
+            <a href="javascript:void(0)" *ngIf="nextPageToken" (click)="loadMore()" class="badge badge-info">Load More.. .</a>
         </div>
     </div>
 </div>
@@ -33,7 +31,8 @@
             <small class="badge badge-secondary">{{post?.published | dateCustom : 'dd,mmyyhh:mm'}}</small>&nbsp;
             <small class="badge badge-warning">views: {{pageCount}}</small>
             <hr>
-            <div class="robo-lead lead mb-3" [innerHtml]="post?.content"></div>
+            <!-- <div class="robo-lead lead mb-3" [innerHtml]="post?.content"></div> -->
+            <div class="robo-lead lead mb-3" id="html-content"></div>
             <hr>
             <div class="card my-4 mt-4">
                 <h5 class="card-header">Leave a Comment:</h5>
@@ -47,10 +46,10 @@
                 <p class="badge badge-info mt-4 mb-4">Recently Posts</p>
             </div>
             <div class="row" *ngFor="let sidePost of sidePosts">
-                <div class="col-sm-4 p-1 mb-2">
+                <div class="col-4 col-sm-4 p-1 mb-2">
                     <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" />
                 </div>
-                <div class="col-sm-8 p-1">
+                <div class="col-8 col-sm-8 p-1">
                     <p class="left-title" [title]="sidePost?.title">{{sidePost?.title}}</p>
                 </div>
             </div>

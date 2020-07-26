@@ -80,7 +80,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.blogService.getPostByPath(path).subscribe((res: Post) => {
       if (res) {
         this.post = res;
-        console.log(res);
+        let htmlDoc = document.querySelector("#html-content");
+        htmlDoc.innerHTML =  this.cleanHtml(this.post.content) 
+       
+        //console.log(res);
       }
     }, (error: any) => {
       console.log(error);
@@ -139,8 +142,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getSidePost() {
-    this.postList(3, (res:PostRoot,that) => {
+    let numberOfPost = 7;
+    this.postList(numberOfPost, (res:PostRoot,that) => {
       that.sidePosts = res.items;
     });
   }
+
+  cleanHtml(html:string) {
+     //html = html.replace(/(style="|dir=|id=")([a-zA-z -:;]+")\s?/gi,"")
+     //html = html.replace(/(<\/?)(span|font?[ a-z"=\w]+)>/gim,'')
+     html = html.replace(/(line|margin|padding|font|vertical|white)[-a-z: 0-9.]+;/gim,'')
+     return html;
+  }
+
+
 }

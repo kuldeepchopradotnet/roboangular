@@ -34,6 +34,9 @@
     .post-col img {
         height: 210px;
     }
+    img.left-img {
+        height: 60px;
+    }
 }
 
 img:hover {
