@@ -14,7 +14,8 @@
             </a>
         </div>
         <div class="col-md-12 text-center">
-            <a href="javascript:void(0)" *ngIf="nextPageToken" (click)="loadMore()" class="badge badge-info">Load More.. .</a>
+            <a href="javascript:void(0)" *ngIf="nextPageToken" (click)="loadMore()" class="badge badge-info">Load More..
+                .</a>
         </div>
     </div>
 </div>
@@ -45,14 +46,16 @@
             <div class="row">
                 <p class="badge badge-info mt-4 mb-4">Recently Posts</p>
             </div>
-            <div class="row" *ngFor="let sidePost of sidePosts">
-                <div class="col-4 col-sm-4 p-1 mb-2">
-                    <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" />
-                </div>
-                <div class="col-8 col-sm-8 p-1">
-                    <p class="left-title" [title]="sidePost?.title">{{sidePost?.title}}</p>
-                </div>
-            </div>
+            <ng-container *ngFor="let sidePost of sidePosts">
+                <a class="row" [href]="sidePost?.url | subStrUrl">
+                    <div class="col-4 col-sm-4 p-1 mb-2">
+                        <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" />
+                    </div>
+                    <div class="col-8 col-sm-8 p-1">
+                        <p class="left-title" [title]="sidePost?.title">{{sidePost?.title}}</p>
+                    </div>
+                </a>
+            </ng-container>
         </div>
     </div>
     <!-- /.row -->

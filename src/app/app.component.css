@@ -32,3 +32,9 @@ span.theme-color.color1 {
     border: 1px solid red;
     border-radius: 4px;
 }
+
+iframe {
+    width: 100% !important;
+    min-height: 300px !important;
+    height: auto !important;
+}
