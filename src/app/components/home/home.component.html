@@ -1,5 +1,5 @@
 <!-- display posts dashboard -->
-<div class="container" *ngIf='!id'>
+<div class="container" *ngIf='!id' id="post-scroll">
     <div class="row">
         <div class="col-sm-4 col-md-3 mb-4 post" *ngFor="let post of posts">
             <a [href]="post?.url | subStrUrl">

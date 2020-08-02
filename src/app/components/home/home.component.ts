@@ -131,6 +131,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   scroll(event: Event, that?: HomeComponent) {
     let element: Document = (event.target as Document)
     var scrollElm = element.scrollingElement;
+    if(!scrollElm){return;}
     let sHeight = (scrollElm.scrollTop - 5 + scrollElm.clientHeight + 5).toFixed();
     if (parseInt(sHeight) === scrollElm.scrollHeight) {
       (that.nextPageToken && that.postList(12, this.cbPost));
@@ -151,7 +152,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   cleanHtml(html:string) {
      //html = html.replace(/(style="|dir=|id=")([a-zA-z -:;]+")\s?/gi,"")
      //html = html.replace(/(<\/?)(span|font?[ a-z"=\w]+)>/gim,'')
-     html = html.replace(/(line|margin|padding|font|vertical|white)[-a-z: 0-9.]+;/gim,'')
+     html = html.replace(/(line|margin|padding|font|vertical|white|background)[-a-z: 0-9.]+;/gim,'')
      return html;
   }
 
