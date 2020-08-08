@@ -10,7 +10,6 @@ export abstract class BaseRepository<T>  {
     }
 
 
-
     getAll() {
         return this.firestore.collection<T>(this.path).valueChanges();
     }

@@ -5,7 +5,7 @@
             <a [href]="post?.url | subStrUrl">
                 <div class="post-col">
                     <div class="col-sm-12 p-1 img">
-                        <img [alt]="post?.images?.length > 0 ? post.images[0].url : 'irobo.jpg'" [src]="post?.images?.length > 0 ? post.images[0].url : 'irobo.jpg'" />
+                        <img [alt]="post?.images?.length > 0 ? post.images[0].url : defaultImg" [src]="post?.images?.length > 0 ? post.images[0].url : defaultImg" />
                     </div>
                     <div class="col-sm-12 p-1 txt">
                         <h5 class="bg-robo" [title]="post?.title">{{post?.title}}</h5>
@@ -49,7 +49,7 @@
             <ng-container *ngFor="let sidePost of sidePosts">
                 <a class="row" [href]="sidePost?.url | subStrUrl">
                     <div class="col-4 col-sm-4 p-1 mb-2">
-                        <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : 'irobo.jpg'" />
+                        <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" />
                     </div>
                     <div class="col-8 col-sm-8 p-1">
                         <p class="left-title" [title]="sidePost?.title">{{sidePost?.title}}</p>

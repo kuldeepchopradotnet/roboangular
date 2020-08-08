@@ -12,6 +12,7 @@ const firebaseConfig = {
   measurementId: "G-BWMS4Z33SS"
 };
 export const environment = {
+  gitUrl: '',
   production: false,
   firebaseConfig: firebaseConfig
 };

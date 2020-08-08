@@ -16,52 +16,54 @@ export interface IDateTime {
 
 export class Helper {
 
-    static htmlTagRemover(htmlStr: string): string{
-        if(!this.isStringNullOrEmpty(htmlStr)){
-            return htmlStr.replace( /(<([^>]+)>)/ig, '');
-        }
-      return '';
+    static htmlTagRemover(htmlStr: string): string {
+        try {
+            if (!this.isStringNullOrEmpty(htmlStr)) {
+                return htmlStr.replace(/(<([^>]+)>)/ig, '');
+            }
+        } catch (error) { }
+        return '';
     }
 
 
-    static extractImage(htmlStr: string){
+    static extractImage(htmlStr: string) {
 
     }
 
 
-    static isStringNullOrEmpty(str:string): boolean{
-        if(typeof str === 'string' && str !== null && str !== undefined && str !== ''){
+    static isStringNullOrEmpty(str: string): boolean {
+        if (typeof str === 'string' && str !== null && str !== undefined && str !== '') {
             return false;
         }
-      return true;
+        return true;
     }
 
 
-    static subStrUrl(url: string) : string {
-        if(!this.isStringNullOrEmpty(url)){
-            url = url.replace(Constant.apiRoboUrl,'')
+    static subStrUrl(url: string): string {
+        if (!this.isStringNullOrEmpty(url)) {
+            url = url.replace(Constant.apiRoboUrl, '')
             let idxOfHtml = url.lastIndexOf('.');
             url = url.substr(0, idxOfHtml);
             return url;
         }
-       return '';
+        return '';
     }
 
 
     static getPropertyType(type: any | any[]) {
-        if(type && type.hasOwnProperty('length')){
+        if (type && type.hasOwnProperty('length')) {
             return 'array';
         }
-        else if(type && typeof type === 'object'){
+        else if (type && typeof type === 'object') {
             return 'object';
         }
-        else if(type && typeof type === 'string'){
+        else if (type && typeof type === 'string') {
             return 'string';
         }
-        else if(type && typeof type === 'number'){
+        else if (type && typeof type === 'number') {
             return 'number';
         }
-        else if(type && typeof type === 'number' && type.toString().indexOf('.') > 0){
+        else if (type && typeof type === 'number' && type.toString().indexOf('.') > 0) {
             return 'decimal'
         }
     }
@@ -115,14 +117,14 @@ export class Helper {
         }
         dateTimeO = {
             weekDay: date.getDay(),
-            dayName : dayNames[date.getDay() + 1],
-            month : date.getMonth() + 1,
-            monthName : monthNames[date.getMonth()],
-            monthDay : date.getDate(),
-            year : date.getFullYear(),
-            hh :  date.getHours(),
-            mm :  date.getMinutes(),
-            time12h : this.formatAMPM(date),
+            dayName: dayNames[date.getDay() + 1],
+            month: date.getMonth() + 1,
+            monthName: monthNames[date.getMonth()],
+            monthDay: date.getDate(),
+            year: date.getFullYear(),
+            hh: date.getHours(),
+            mm: date.getMinutes(),
+            time12h: this.formatAMPM(date),
             timeZone: '',
         }
         return dateTimeO;
@@ -134,24 +136,24 @@ export class Helper {
     }
 
 
-    static copyToClipboard(copiedContent){
+    static copyToClipboard(copiedContent) {
         copy(copiedContent);
     }
-    
-    static firstElement(arr: any[]): any{
-        if(arr && arr.length > 0){
+
+    static firstElement(arr: any[]): any {
+        if (arr && arr.length > 0) {
             return arr[0]
         }
         return null;
     }
 
-    static setLocalStorage(key:string, value: string){
-        return localStorage.setItem(key,value);
+    static setLocalStorage(key: string, value: string) {
+        return localStorage.setItem(key, value);
     }
-    static getLocalStorage(key:string){
-       return localStorage.getItem(key);
+    static getLocalStorage(key: string) {
+        return localStorage.getItem(key);
     }
-    static removeLocalStorage(key:string){
+    static removeLocalStorage(key: string) {
         return localStorage.removeItem(key);
     }
 

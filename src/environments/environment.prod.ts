@@ -10,6 +10,7 @@ const firebaseConfig = {
 };
 
 export const environment = {
+  gitUrl: 'https://kuldeepchopradotnet.github.io/roboangular',
   production: true,
   firebaseConfig:firebaseConfig
 };

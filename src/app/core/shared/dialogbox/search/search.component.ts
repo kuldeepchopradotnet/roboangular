@@ -14,15 +14,8 @@ export class SearchComponent implements OnInit {
   private blogService: BlogService,) { }
 
   ngOnInit() {
-    debugger;
-    console.log(this.data);
-
     if(this.data && this.data.posts){
       this.posts = this.data.posts
     }
-
   }
-
-
-
 }

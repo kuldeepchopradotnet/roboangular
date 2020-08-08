@@ -8,6 +8,8 @@ import { AboutComponent } from './core/shared/dialogbox/about/about.component';
 import { BlogService } from './core/services/blog/blog.service';
 import { PostRoot } from './domain/model/post.model';
 import { SearchComponent } from './core/shared/dialogbox/search/search.component';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,7 @@ export class AppComponent implements AfterViewChecked {
   title = 'robohawk';
   isLoader: boolean = false;
   gitUrl: string = 'https://kuldeepchopradotnet.github.io/roboangular';
-  logo: string = this.gitUrl + "/assets/robo.svg";
+  logo: string = environment.gitUrl + "/assets/robo.svg";
   searchTxt: string;
   searchmsg: string;
   isSearchErr: boolean = false;
@@ -45,7 +47,9 @@ export class AppComponent implements AfterViewChecked {
     private cdRef: ChangeDetectorRef,
     public dialog: MatDialog,
     private blogService: BlogService) {
-
+      if(environment.production){
+        console.log = function(...val){}
+      }
   }
 
 
