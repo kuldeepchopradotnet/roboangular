@@ -1,6 +1,6 @@
 <!-- display posts dashboard -->
 <div class="container" *ngIf='!id' id="post-scroll">
-    <div class="row" *ngIf="viewModeVal === viewMode.list">
+    <div class="row" *ngIf="viewModeVal === viewMode.grid">
         <div class="col-sm-4 col-md-3 mb-4 post" *ngFor="let post of posts">
             <a [href]="post?.url | subStrUrl">
                 <div class="post-col">
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <ul class="list-group" *ngIf="viewModeVal !== viewMode.list">
+    <ul class="list-group" *ngIf="viewModeVal === viewMode.list">
         <li class="list-group-item" *ngFor="let post of posts">
             <a class="search-lst" [href]="post?.url | subStrUrl">
                 {{post?.title}}

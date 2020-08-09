@@ -61,12 +61,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getSidePost();
     }
     else {
+      debugger;
       let viewmode = this.getviewMode();
-      this.viewModeVal = viewmode;
-      if(viewmode && viewmode !== this.viewMode.list){
+      if(viewmode && viewmode === this.viewMode.list){
+        this.viewModeVal = this.viewMode.list;
         this.postList(50, this.cbPost);
       }
       else {
+        this.viewModeVal = this.viewMode.grid;
         this.postList(12, this.cbPost);
       }
     }

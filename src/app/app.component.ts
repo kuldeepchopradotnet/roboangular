@@ -154,23 +154,28 @@ export class AppComponent implements AfterViewChecked,OnInit {
   defaultView = this.viewMode.list
 
   getsetviewMode() {
+    debugger;
     let val:string;
     window.localStorage && (val = window.localStorage.getItem(this.VIEW_MODE));
     if(val){
-     this.defaultView = val;
+      if(val === this.viewMode.grid){
+        this.defaultView = this.viewMode.list
+      }
+      else{
+        this.defaultView = this.viewMode.grid
+      }
     }
   }
 
 
   changeMode(mode) {
-    debugger;
     if(mode === this.viewMode.grid){
       this.defaultView = this.viewMode.list
     }
     else{
       this.defaultView = this.viewMode.grid
     }
-    window.localStorage && window.localStorage.setItem(this.VIEW_MODE,this.defaultView);
+    window.localStorage && window.localStorage.setItem(this.VIEW_MODE,mode);
     location.reload();
   }
 
