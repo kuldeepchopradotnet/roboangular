@@ -8,7 +8,7 @@
     height: 53px;
     font-size: 14px;
     background: rgb(255, 255, 255);
-    color: #252525;
+    color: #034952;
     font-weight: 600;
 }
 
@@ -35,7 +35,10 @@
         height: 210px;
     }
     img.left-img {
-        height: 60px;
+        height: 75px;
+    }
+    .post-col h5 {
+        font-size: 18px;
     }
 }
 
@@ -61,7 +64,7 @@ img:hover {
     font-weight: 300;
 }
 
-.col-sm-4.p-1.mb-2 {
+.r-post-box {
     overflow: hidden;
     border-radius: 5px;
     background: #17a2b8;

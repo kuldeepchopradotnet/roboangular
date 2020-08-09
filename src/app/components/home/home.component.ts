@@ -27,11 +27,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   pageCount: number = 0;
   nextPageToken: string;
   defaultImg: string = environment.gitUrl + '/assets/irobohawk-default.png'
-  ogUrl: string = ""
-  ogImg: string = ""
-  ogDescrip: string = "";
-  ogTitle: string = "";
-
+  VIEW_MODE = "VIEW_MODE"
+  viewModeVal = "grid";
+  viewMode = {
+    list: "List View",
+    grid: "Grid View"
+  }
   constructor(private route: ActivatedRoute,
     private blogService: BlogService,
     private pageVisitorRepo: PageVisitorRepository,
@@ -60,13 +61,28 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getSidePost();
     }
     else {
-      this.postList(12, this.cbPost);
+      let viewmode = this.getviewMode();
+      this.viewModeVal = viewmode;
+      if(viewmode && viewmode !== this.viewMode.list){
+        this.postList(50, this.cbPost);
+      }
+      else {
+        this.postList(12, this.cbPost);
+      }
     }
     this.getAndUpdatePageVisitor();
     let that = this;
     window.addEventListener('scroll', (e) => this.scroll(e, that), true);
   }
 
+  getviewMode() {
+    let val = this.viewMode.grid;
+    window.localStorage && (val = window.localStorage.getItem(this.VIEW_MODE));
+    if(val){
+      this.viewModeVal = val;
+    }
+    return val
+  }
 
   getAndUpdatePageVisitor() {
     this.pageVisitorRepo.get(this.docRef).subscribe((x: any) => {
@@ -81,19 +97,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  getPostByPath(path) {
+  getPostByPath(path:string) {
+    path = path.replace(".html",'');
     this.blogService.getPostByPath(path).subscribe((res: Post) => {
       if (res) {
         this.post = res;
         let htmlDoc = document.querySelector("#html-content");
         htmlDoc.innerHTML = this.cleanHtml(this.post.content);
-        this.ogImg = this.post.images && this.post.images.length > 0 ? this.post.images[0].url : this.defaultImg;
-        this.ogUrl = Helper.subStrUrl(this.post.url);
-        this.ogTitle = this.post.title;
-        let content = this.post.content ? Helper.htmlTagRemover(this.post.content) : '';
-        content = content ? content.trim().substr(0, 160) : '';
-        this.ogDescrip = content ? content + ".. ." : ''
-        this.sMeta();
       }
     }, (error: any) => {
       console.log(error);
@@ -113,6 +123,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   postList(limit: number = 12, cb: (res: PostRoot, that: any) => void) {
     this.blogService.getPost(this.nextPageToken, limit).subscribe((res: PostRoot) => {
       if (res && res.items && res.items.length > 0) {
+        console.log(res);
         cb(res, this);
       }
     }, (error: any) => {
@@ -163,55 +174,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     //html = html.replace(/(<\/?)(span|font?[ a-z"=\w]+)>/gim,'')
     html = html.replace(/(line|margin|padding|font|vertical|white|background)[-a-z: 0-9.]+;/gim, '')
     return html;
-  }
-
-  setTitle(titleVal: string) {
-    try {
-      let title = document.getElementsByTagName("title");
-      for (let i = 0; i < title.length; i++) {
-        title.item(i).innerText = titleVal
-      }
-    } catch (error) {
-      
-    }
-  }
-
-  sMeta() {
-    try {
-      const metas = document.getElementsByTagName('meta');
-      for (let i = 0; i < metas.length; i++) {
-        let metaEl: HTMLMetaElement = metas.item(i);
-        let prop = metaEl.getAttribute('property') || metaEl.getAttribute('name');
-        this.setMetaProp(prop, metaEl)
-      }
-    } catch (error) {
-      
-    }
-  }
-
-  setMetaProp(val: string, metaEl: HTMLMetaElement) {
-    try {
-      switch (val) {
-        case 'og:url':
-          metaEl.setAttribute("content", this.ogUrl)
-          break;
-        case 'og:image':
-          metaEl.setAttribute("content", this.ogImg)
-          break;
-        case 'og:title':
-          metaEl.setAttribute("content", this.ogTitle)
-          this.setTitle(this.ogTitle)
-          break;
-        case 'og:description':
-          metaEl.setAttribute("content", this.ogDescrip)
-          break;
-        case 'description':
-          metaEl.setAttribute("content", this.ogDescrip)
-          break;
-      }
-    } catch (error) {
-      
-    }
   }
 
 }

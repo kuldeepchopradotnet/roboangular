@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link app-txt-color" href="javascript:void(0)" (click)="openAboutDialog()">About</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link app-txt-color" href="javascript:void(0)" (click)="changeMode(defaultView)">{{defaultView}}</a>
+                </li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
@@ -50,17 +53,8 @@
     <footer class="py-5 bg-robo">
         <div class="container">
             <div class="row">
-                <!-- <div class="site-theme">
-                    <ng-container *ngFor="let theme of themeColorArr">
-                        <span class="theme-color" [ngStyle]="{'background-color': theme.bgColor}" (click)="saveTheme(theme)"> &nbsp; </span>
-                    </ng-container>
-                </div> -->
             </div>
             <p class="m-0 text-center app-txt-color">Copyright &copy; iRoboHawk 2020</p>
         </div>
-
-
-
-        <!-- /.container -->
     </footer>
 </div>

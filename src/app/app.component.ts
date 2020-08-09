@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewChecked {
+export class AppComponent implements AfterViewChecked,OnInit {
   title = 'robohawk';
   isLoader: boolean = false;
   gitUrl: string = 'https://kuldeepchopradotnet.github.io/roboangular';
@@ -50,6 +50,9 @@ export class AppComponent implements AfterViewChecked {
       if(environment.production){
         console.log = function(...val){}
       }
+  }
+  ngOnInit(): void {
+    this.getsetviewMode();
   }
 
 
@@ -126,6 +129,7 @@ export class AppComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
+    
     this.loaderService.getloader.subscribe(isLoader => {
       this.isLoader = isLoader;
       this.cdRef.detectChanges();
@@ -140,5 +144,35 @@ export class AppComponent implements AfterViewChecked {
       el.style.backgroundImage = theme.bgImg;
     })
   }
+
+  VIEW_MODE = "VIEW_MODE"
+
+  viewMode = {
+    list: "List View",
+    grid: "Grid View"
+  }
+  defaultView = this.viewMode.list
+
+  getsetviewMode() {
+    let val:string;
+    window.localStorage && (val = window.localStorage.getItem(this.VIEW_MODE));
+    if(val){
+     this.defaultView = val;
+    }
+  }
+
+
+  changeMode(mode) {
+    debugger;
+    if(mode === this.viewMode.grid){
+      this.defaultView = this.viewMode.list
+    }
+    else{
+      this.defaultView = this.viewMode.grid
+    }
+    window.localStorage && window.localStorage.setItem(this.VIEW_MODE,this.defaultView);
+    location.reload();
+  }
+
 
 }

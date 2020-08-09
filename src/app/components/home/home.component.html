@@ -1,6 +1,6 @@
 <!-- display posts dashboard -->
 <div class="container" *ngIf='!id' id="post-scroll">
-    <div class="row">
+    <div class="row" *ngIf="viewModeVal === viewMode.list">
         <div class="col-sm-4 col-md-3 mb-4 post" *ngFor="let post of posts">
             <a [href]="post?.url | subStrUrl">
                 <div class="post-col">
@@ -18,7 +18,24 @@
                 .</a>
         </div>
     </div>
+
+    <ul class="list-group" *ngIf="viewModeVal !== viewMode.list">
+        <li class="list-group-item" *ngFor="let post of posts">
+            <a class="search-lst" [href]="post?.url | subStrUrl">
+                {{post?.title}}
+                <span class="badge badge-secondary ml-1" *ngFor="let label of post.labels">
+                    {{label}}
+                </span>
+            </a>
+        </li>
+    </ul>
+
+
+
 </div>
+
+
+
 
 <!-- display single post -->
 <div class="container robo-container" *ngIf='id'>
@@ -48,7 +65,7 @@
             </div>
             <ng-container *ngFor="let sidePost of sidePosts">
                 <a class="row" [href]="sidePost?.url | subStrUrl">
-                    <div class="col-4 col-sm-4 p-1 mb-2">
+                    <div class="col-4 col-sm-4 p-1 mb-3 r-post-box">
                         <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" />
                     </div>
                     <div class="col-8 col-sm-8 p-1">
