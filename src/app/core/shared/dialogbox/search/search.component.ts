@@ -4,11 +4,11 @@ import { BlogService } from 'src/app/core/services/blog/blog.service';
 import { Post, PostRoot } from 'src/app/domain/model/post.model';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-dialog',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchDialogComponent implements OnInit {
   posts:Post[];
   constructor(@Inject(MAT_DIALOG_DATA) private data:any,
   private blogService: BlogService,) { }

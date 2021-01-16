@@ -3,11 +3,6 @@ import { PubSubService } from './core/services/data-service/pub-sub.service';
 import { Helper } from './core/shared/helper';
 import { Constant } from './core/shared/constants';
 import { ITheme } from './domain/model/theme.interface';
-import { MatDialog } from '@angular/material/dialog';
-import { AboutComponent } from './core/shared/dialogbox/about/about.component';
-import { BlogService } from './core/services/blog/blog.service';
-import { PostRoot } from './domain/model/post.model';
-import { SearchComponent } from './core/shared/dialogbox/search/search.component';
 import { environment } from 'src/environments/environment';
 
 
@@ -16,15 +11,12 @@ import { environment } from 'src/environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewChecked,OnInit {
+export class AppComponent implements AfterViewChecked, OnInit {
   title = 'robohawk';
   isLoader: boolean = false;
   gitUrl: string = 'https://kuldeepchopradotnet.github.io/roboangular';
   logo: string = environment.gitUrl + "/assets/robo.svg";
-  searchTxt: string;
-  searchmsg: string;
-  isSearchErr: boolean = false;
-  
+
   themeColorArr: ITheme[] = [
     {
       bgColor: '#ffffff',
@@ -45,45 +37,15 @@ export class AppComponent implements AfterViewChecked,OnInit {
 
   constructor(private loaderService: PubSubService,
     private cdRef: ChangeDetectorRef,
-    public dialog: MatDialog,
-    private blogService: BlogService) {
-      if(environment.production){
-        console.log = function(...val){}
-      }
+
+  ) {
+    if (environment.production) {
+      console.log = function (...val) { }
+    }
   }
   ngOnInit(): void {
-    this.getsetviewMode();
+
   }
-
-
-  openSearch() {
-    this.isSearchErr = false;
-    let element = document.querySelector("#serach-form");
-    element.classList.remove("error-border");
-    if (!this.searchTxt) {
-      this.isSearchErr = true;
-      this.searchmsg = 'enter one or more word to search.';
-      element.classList.add("error-border");
-      return;
-    }
-    this.blogService.searchPost(this.searchTxt).subscribe((res: PostRoot) => {
-      if (res && res.items && res.items.length > 0) {
-        this.dialog.open(SearchComponent, {
-          autoFocus: false,
-          maxHeight: '90vh',
-          data: {
-            posts: res.items,
-          }
-        });
-      }
-      this.searchmsg = 'No record found.'
-    }, (error: any) => {
-      this.searchmsg = 'No record found.'
-      console.log(error);
-    });
-    this.searchTxt = "";
-  }
-
 
   setMythemPrefrence(theme: ITheme) {
     try {
@@ -93,12 +55,6 @@ export class AppComponent implements AfterViewChecked,OnInit {
     catch {
       console.warn("setLocalStorage issue");
     }
-  }
-
-  openAboutDialog() {
-    this.dialog.open(AboutComponent, {
-
-    });
   }
 
 
@@ -129,7 +85,7 @@ export class AppComponent implements AfterViewChecked,OnInit {
   }
 
   ngAfterViewChecked(): void {
-    
+
     this.loaderService.getloader.subscribe(isLoader => {
       this.isLoader = isLoader;
       this.cdRef.detectChanges();
@@ -145,39 +101,10 @@ export class AppComponent implements AfterViewChecked,OnInit {
     })
   }
 
-  VIEW_MODE = "VIEW_MODE"
-
-  viewMode = {
-    list: "List View",
-    grid: "Grid View"
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("nav-search").style.display = 'none'
   }
-  defaultView = this.viewMode.list
-
-  getsetviewMode() {
-    debugger;
-    let val:string;
-    window.localStorage && (val = window.localStorage.getItem(this.VIEW_MODE));
-    if(val){
-      if(val === this.viewMode.grid){
-        this.defaultView = this.viewMode.list
-      }
-      else{
-        this.defaultView = this.viewMode.grid
-      }
-    }
-  }
-
-
-  changeMode(mode) {
-    if(mode === this.viewMode.grid){
-      this.defaultView = this.viewMode.list
-    }
-    else{
-      this.defaultView = this.viewMode.grid
-    }
-    window.localStorage && window.localStorage.setItem(this.VIEW_MODE,mode);
-    location.reload();
-  }
-
 
 }

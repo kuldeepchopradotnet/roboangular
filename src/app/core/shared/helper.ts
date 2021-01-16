@@ -43,7 +43,7 @@ export class Helper {
         if (!this.isStringNullOrEmpty(url)) {
             url = url.replace(Constant.apiRoboUrl, '')
             //let idxOfHtml = url.lastIndexOf('.');
-           // url = url.substr(0, idxOfHtml);
+            // url = url.substr(0, idxOfHtml);
             return url;
         }
         return '';
@@ -155,6 +155,13 @@ export class Helper {
     }
     static removeLocalStorage(key: string) {
         return localStorage.removeItem(key);
+    }
+
+    static cleanHtml(html: string) {
+        //html = html.replace(/(style="|dir=|id=")([a-zA-z -:;]+")\s?/gi,"")
+        //html = html.replace(/(<\/?)(span|font?[ a-z"=\w]+)>/gim,'')
+        html = html.replace(/(line|margin|padding|font|vertical|white|background)[-a-z: 0-9.]+;/gim, '')
+        return html;
     }
 
 }

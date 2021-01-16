@@ -1,60 +1,68 @@
-<div class="loader" *ngIf="isLoader">
-    <mat-spinner [diameter]="100"></mat-spinner>
-</div>
+<div id="main">
 
-<div [ngClass]="{'page-blur': isLoader}">
+    <div class="loader" *ngIf="isLoader">
+        <mat-spinner [diameter]="100"></mat-spinner>
+    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <a class="navbar-brand" href="#"> <img [src]="logo" alt="logo" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div [ngClass]="{'page-blur': isLoader}">
+        <app-side-bar></app-side-bar>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <span class="p-2 mr-2" (click)="openNav()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-distribute-vertical" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 1.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5zm0 13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5z" />
+                    <path d="M2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7z" />
+                </svg>
+            </span>
+            <a class="navbar-brand" href="#"> <img [src]="logo" alt="logo" /></a>
+            <app-serach id="nav-search"></app-serach>
+        </nav>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white badge badge-info ml-2" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white badge badge-info ml-2" href="javascript:void(0)" (click)="openAboutDialog()">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white badge badge-info ml-2" href="javascript:void(0)" (click)="changeMode(defaultView)">{{defaultView}}</a>
-                </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li> -->
-            </ul>
-            <form class="form-inline my-2 my-lg-0 app-txt-color">
 
-                <div class="input-group md-form form-sm form-2 pl-0" id="serach-form">
-                    <input class="form-control my-0 py-1 red-border rm-outline" type="search" name="search" [(ngModel)]="searchTxt" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="input-group-text red lighten-3 badge-info " type="submit" id="basic-text1" (click)="openSearch()">
-                            Search
-                        </button>
-                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <router-outlet></router-outlet>
+        <footer class="py-5 bg-robo">
+            <div class="container">
+                <div class="row">
                 </div>
-            </form>
-        </div>
-    </nav>
-    <router-outlet></router-outlet>
-    <footer class="py-5 bg-robo">
-        <div class="container">
-            <div class="row">
+                <p class="m-0 text-center app-txt-color">Copyright &copy; iRoboHawk 2021</p>
             </div>
-            <p class="m-0 text-center app-txt-color">Copyright &copy; iRoboHawk 2020</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </div>

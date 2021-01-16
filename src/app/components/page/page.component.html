@@ -1,0 +1,40 @@
+<div class="container robo-container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mt-4">{{post?.title}}</h1>
+            <!-- <p class="lead">
+                by
+                <a [href]="post?.author?.url" class="badge badge-info">{{post?.author?.displayName}}</a>
+            </p> -->
+            <!-- <small class="badge badge-secondary">{{post?.published | dateCustom : 'dd,mmyyhh:mm'}}</small>&nbsp; -->
+            <!-- <small class="badge badge-warning">views: {{pageCount}}</small> -->
+            <hr>
+            <!-- <div class="robo-lead lead mb-3" [innerHtml]="post?.content"></div> -->
+            <div class="robo-lead lead mb-3" id="page-content"></div>
+            <hr>
+            <!-- <div class="card my-4 mt-4">
+                <h5 class="card-header">Leave a Comment:</h5>
+                <div class="card-body">
+                    <disqus [identifier]="id" [url]="host + id"></disqus>
+                </div>
+            </div> -->
+        </div>
+        <!-- <div class="col-md-4">
+            <div class="row">
+                <p class="badge badge-info mt-4 mb-4">Recently Posts</p>
+            </div>
+            <ng-container *ngFor="let sidePost of sidePosts">
+                <a class="row" [href]="sidePost?.url | subStrUrl">
+                    <div class="col-4 col-sm-4 p-1 mb-3 r-post-box">
+                        <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg"
+                            [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" />
+                    </div>
+                    <div class="col-8 col-sm-8 p-1">
+                        <p class="left-title" [title]="sidePost?.title">{{sidePost?.title}}</p>
+                    </div>
+                </a>
+            </ng-container>
+        </div> -->
+    </div>
+    <!-- /.row -->
+</div>

@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getSidePost();
     }
     else {
-      debugger;
+      
       let viewmode = this.getviewMode();
       if(viewmode && viewmode === this.viewMode.list){
         this.viewModeVal = this.viewMode.list;
@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (res) {
         this.post = res;
         let htmlDoc = document.querySelector("#html-content");
-        htmlDoc.innerHTML = this.cleanHtml(this.post.content);
+        htmlDoc.innerHTML = Helper.cleanHtml(this.post.content);
       }
     }, (error: any) => {
       console.log(error);
@@ -171,12 +171,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  cleanHtml(html: string) {
-    //html = html.replace(/(style="|dir=|id=")([a-zA-z -:;]+")\s?/gi,"")
-    //html = html.replace(/(<\/?)(span|font?[ a-z"=\w]+)>/gim,'')
-    html = html.replace(/(line|margin|padding|font|vertical|white|background)[-a-z: 0-9.]+;/gim, '')
-    return html;
-  }
+
 
 }
 

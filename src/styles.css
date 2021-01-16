@@ -147,3 +147,43 @@ iframe {
 a.search-lst {
     color: #034048;
 }
+
+.loader {
+    position: fixed;
+    background: #0000001a;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+mat-spinner.mat-spinner.mat-progress-spinner.mat-primary.mat-progress-spinner-indeterminate-animation {
+    left: 44% !important;
+    top: 50% !important;
+}
+
+.page-blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+span.theme-color {
+    width: 13px;
+    height: 13px;
+    border: 1px solid;
+    float: left;
+    margin: 1px 5px;
+}
+
+span.theme-color.color1 {
+    background: #33b5e5 !important;
+}
+
+
+app-serach#nav-search {
+    display: none;
+}
+@media (min-width:992px){
+    app-serach#nav-search {
+        display: block;
+    }
+}

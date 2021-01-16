@@ -10,18 +10,22 @@ import { SubStrUrlPipe } from './core/pipes/substr-url/sub-str-url.pipe';
 import { DateCustomPipe } from './core/pipes/date-custom/date-custom.pipe';
 import { DisqusModule } from "ngx-disqus";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PubSubService } from './core/services/data-service/pub-sub.service';
 import { ReqResInterceptor } from './core/interceptor/req-res.interceptor';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AboutComponent } from './core/shared/dialogbox/about/about.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { PageVisitorRepository } from './core/repository/site-visitor/site-visitor.repo';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { SearchComponent } from './core/shared/dialogbox/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { PageComponent } from './components/page/page.component';
+import { SerachComponent } from './components/serach/serach.component';
+import { SearchDialogComponent } from './core/shared/dialogbox/search/search.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { FormsModule } from '@angular/forms';
     SubStrUrlPipe,
     DateCustomPipe,
     AboutComponent,
-    SearchComponent
+    SideBarComponent,
+    PageComponent,
+    SerachComponent,
+    SearchDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,7 @@ import { FormsModule } from '@angular/forms';
   bootstrap: [AppComponent],
   entryComponents: [
     AboutComponent,
-    SearchComponent
+    SearchDialogComponent
   ],
 })
 export class AppModule { }

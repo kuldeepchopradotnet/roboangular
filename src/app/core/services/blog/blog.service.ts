@@ -14,9 +14,9 @@ export class BlogService {
   readonly apiKey = ''
   constructor(private http: HttpClient) { }
 
-  getPost(nextPageToken?: string, limit?:number): Observable<PostRoot> {
+  getPost(nextPageToken?: string, limit?: number): Observable<PostRoot> {
     let { base, blog, blogId, posts, status, statusVal, fetchBodies, fetchImages, isFetchBody, isFetchImages, key, apikey, maxResults, pageToken } = this.blogUrls;
-    let url:string;
+    let url: string;
     if (nextPageToken) {
       url = `${base}${blog}/${blogId}/${posts}?${status}=${statusVal}&${maxResults}=${limit}&${pageToken}=${nextPageToken}&${fetchBodies}=${isFetchBody}&${fetchImages}=${isFetchImages}&${key}=${apikey}`;
     }
@@ -34,8 +34,20 @@ export class BlogService {
   }
 
   searchPost(query: string) {
-    let { base, blog, blogId, posts, apikey, search, key,fetchBodies } = this.blogUrls;
+    let { base, blog, blogId, posts, apikey, search, key, fetchBodies } = this.blogUrls;
     let url = `${base}${blog}/${blogId}/${posts}/${search}?q=${query}&${fetchBodies}=${false}&${key}=${apikey}`;
+    return this.http.get<PostRoot>(url);
+  }
+
+  getPages() {
+    const { base, blog, blogId, apikey, key, fetchBodies, statusVal, status } = this.blogUrls;
+    let url = `${base}${blog}/${blogId}/pages?${status}=${statusVal}&${fetchBodies}=false&${key}=${apikey}`
+    return this.http.get<PostRoot>(url);
+  }
+
+  getPageById(id: string) {
+    const { base, blog, blogId, apikey, key, fetchBodies, statusVal, status } = this.blogUrls;
+    let url = `${base}${blog}/${blogId}/pages/${id}?${status}=${statusVal}&${key}=${apikey}`
     return this.http.get<PostRoot>(url);
   }
 
