@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background: #ffffff !important;
+    background-color: #d2d2d2 !important;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -22,7 +22,7 @@ img {
 }
 
 a.navbar-brand img {
-    width: 82px;
+    width: 213px;
 }
 
 a.navbar-brand svg {
@@ -121,8 +121,9 @@ p.left-title {
 }
 
 img.left-img {
-    height: 56px;
+    height: 60px;
     width: 100%;
+    border-radius: 15px;
 }
 
 button.btn.my-2.my-sm-0.app-txt-color {

@@ -18,6 +18,7 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
     this.getsetviewMode();
     this.getPages();
+    this.getConnection()
   }
 
   getPages() {
@@ -76,7 +77,19 @@ export class SideBarComponent implements OnInit {
   closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
-    if(window.innerWidth)
-        document.getElementById("nav-search").style.display = 'block'
+    if (window.innerWidth > 992)
+      document.getElementById("nav-search").style.display = 'block'
   }
+
+  connection: any
+  getConnection() {
+    debugger;
+    if (navigator.onLine) {
+      this.connection = (navigator as any).connection
+      this.connection.onchange = (e) => {
+        console.log(e)
+      }
+    }
+  }
+
 }

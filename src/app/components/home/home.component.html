@@ -8,7 +8,7 @@
                         <img [alt]="post?.images?.length > 0 ? post.images[0].url : defaultImg" [src]="post?.images?.length > 0 ? post.images[0].url : defaultImg" />
                     </div>
                     <div class="col-sm-12 p-1 txt">
-                        <h5 class="bg-robo" [title]="post?.title">{{post?.title}}</h5>
+                        <h5 [title]="post?.title">{{post?.title}}</h5>
                     </div>
                 </div>
             </a>
@@ -40,7 +40,7 @@
 <!-- display single post -->
 <div class="container robo-container" *ngIf='id'>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8 post-content-col">
             <h1 class="mt-4">{{post?.title}}</h1>
             <p class="lead">
                 by
@@ -60,12 +60,12 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="row">
+            <div class="row row-recent">
                 <p class="badge badge-info mt-4 mb-4">Recently Posts</p>
             </div>
             <ng-container *ngFor="let sidePost of sidePosts">
-                <a class="row" [href]="sidePost?.url | subStrUrl">
-                    <div class="col-4 col-sm-4 p-1 mb-3 r-post-box">
+                <a class="row row-col" [href]="sidePost?.url | subStrUrl">
+                    <div class="col-4 col-sm-4 p-1 r-post-box">
                         <img class="left-img" [alt]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" [src]="sidePost?.images?.length > 0 ? sidePost.images[0].url : defaultImg" />
                     </div>
                     <div class="col-8 col-sm-8 p-1">

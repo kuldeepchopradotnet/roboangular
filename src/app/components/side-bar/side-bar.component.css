@@ -40,6 +40,10 @@
     padding: 16px;
   }
 
+  hr {
+    border-top: 1px solid rgb(115 115 115);
+  }
+
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 14px;}

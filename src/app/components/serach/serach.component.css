@@ -1,0 +1,19 @@
+input.search-input {
+    border-top: 3px solid #8a8a8a52;
+    border-radius: 26px;
+    font-size: 12px;
+    border-top-right-radius: 26px !important;
+    border-bottom-right-radius: 26px !important;
+}
+
+button#basic-text1 {
+    background: transparent;
+    border: 0;
+    color: #999999;
+    font-size: 0px;
+    margin: 4px;
+}
+
+form.form-inline.my-2.my-lg-0.app-txt-color.ng-untouched.ng-pristine.ng-valid {
+    margin: 8px;
+}
