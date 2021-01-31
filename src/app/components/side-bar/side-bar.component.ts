@@ -83,7 +83,6 @@ export class SideBarComponent implements OnInit {
 
   connection: any
   getConnection() {
-    debugger;
     if (navigator.onLine) {
       this.connection = (navigator as any).connection
       this.connection.onchange = (e) => {

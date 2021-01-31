@@ -8,21 +8,23 @@ app-serach {
 }
 
 nav.nav-header {
-    margin: 1%;
-    border-radius: 30px;
     box-shadow: 0px 4px 7px -3px #00000073;
 }
 
 span.sidebar-btn {
     color: #f8f9fa;
-    border: 1px solid #999999;
-    border-radius: 24px;
     padding: 4px;
     font-size: 0px;
-    background: #999999;
 }
 
 .footer-color {
-    color: #9a9a9a !important;
-    background: #000000;
+    color: #f5f5f5 !important;
+    background: #7f007f;
 }
+
+div.menu-ham {
+    width: 20px;
+    height: 3px;
+    background-color: #7f007f;
+    margin: 4px 0;
+  }
